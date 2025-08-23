@@ -68,7 +68,7 @@ DEBUG=True
 # API Key
 GROQ_API_KEY=<your-api-key>
 ```
-5. Load seed data
+6. Load seed data
 ```
 python seed_data.py
 ```
