@@ -72,6 +72,10 @@ GROQ_API_KEY=<your-api-key>
 ```
 python seed_data.py
 ```
+7. Start your server
+```
+python manage.py runserver
+```
 ## Sample GET and response
 
 REQUEST:
