@@ -57,9 +57,16 @@ venv\Scripts\activate      # On Windows
 pip install -r requirements.txt
 ```
 4. run migrations:
-
 ```
 python manage.py migrate
+```
+5. Get GROQ API key and set up a .env file
+```
+# DJANGO  Settings
+DEBUG=True
+
+# API Key
+GROQ_API_KEY=<your-api-key>
 ```
 5. Load seed data
 ```
