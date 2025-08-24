@@ -30,8 +30,8 @@ An AI-powered backend system built with **Django & DRF**, designed to track stud
 
 ## Tech Stack  
 - **Backend**: Django, Django REST Framework  
-- **AI Integration**: Groq (LLM API)  
-- **Database**: SQLite (default) / PostgreSQL (production)  
+- **AI Integration**: Groq (Llama-3.1-8b-instant)  
+- **Database**: SQLite (default)
 - **Testing**: Django Test Framework  
 ---
 
