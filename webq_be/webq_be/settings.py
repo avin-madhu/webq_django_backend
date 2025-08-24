@@ -6,7 +6,17 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = config('SECRET_KEY', default='django-insecure-your-secret-key-here')
 DEBUG = config('DEBUG', default=True, cast=bool)
-ALLOWED_HOSTS = ['localhost', '127.0.0.1']
+
+# Fix 1: Add your Vercel domain to ALLOWED_HOSTS
+ALLOWED_HOSTS = [
+    'localhost', 
+    '127.0.0.1', 
+    'webq-react-frontend.vercel.app',
+    '.vercel.app',  # Allow all Vercel subdomains
+    '*' if DEBUG else ''  # Allow all hosts in debug mode only
+]
+# Remove empty strings from ALLOWED_HOSTS
+ALLOWED_HOSTS = [host for host in ALLOWED_HOSTS if host]
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -91,12 +101,50 @@ REST_FRAMEWORK = {
     ],
 }
 
-# CORS Settings
+# Fix 2: Enhanced CORS Settings
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:3000",
     "http://127.0.0.1:3000",
     "http://localhost:5173",
+    "https://webq-react-frontend.vercel.app"
 ]
+
+# Fix 3: Add additional CORS settings for better compatibility
+CORS_ALLOW_CREDENTIALS = True
+CORS_ALLOW_ALL_ORIGINS = DEBUG  # Allow all origins in debug mode
+
+# Fix 4: Add specific CORS headers that might be needed
+CORS_ALLOW_HEADERS = [
+    'accept',
+    'accept-encoding',
+    'authorization',
+    'content-type',
+    'dnt',
+    'origin',
+    'user-agent',
+    'x-csrftoken',
+    'x-requested-with',
+]
+
+CORS_ALLOW_METHODS = [
+    'DELETE',
+    'GET',
+    'OPTIONS',
+    'PATCH',
+    'POST',
+    'PUT',
+]
+
+# Fix 5: CSRF settings for cross-origin requests
+CSRF_TRUSTED_ORIGINS = [
+    "https://webq-react-frontend.vercel.app",
+    "http://localhost:3000",
+    "http://localhost:5173",
+]
+
+if not DEBUG:
+    SECURE_CROSS_ORIGIN_OPENER_POLICY = "same-origin-allow-popups"
+    SECURE_REFERRER_POLICY = "same-origin"
 
 # AI Settings
 GEMINI_API_KEY = config('GEMINI_API_KEY', default='')
