@@ -77,7 +77,7 @@ class AIRecommendationEngine:
             "performance_category": category,
             "strengths": [],
             "weaknesses": [],
-            "learning_style": "visual",  # Default
+            "learning_style": "visual",  # Default learning style
             "recommended_focus_areas": [],
         }
 
@@ -96,6 +96,7 @@ class AIRecommendationEngine:
             except Exception as e:
                 logger.error(f"AI analysis failed: {e}")
                 analysis = self._fallback_analysis(performance_data, analysis)
+        # if groq is not available 
         else:
             analysis = self._fallback_analysis(performance_data, analysis)
 
